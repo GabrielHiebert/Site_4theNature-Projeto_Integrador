@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4the Nature</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(function () { // quandoo documento estiver pronto
+
+            $.ajax({
+                url: 'http://localhost:5000/listar_usuarios',
+                method: 'GET',
+                dataType: 'json', //os dados são recebidos no formato json
+                success: listar, // chama a função listar para processar o resultado
+                error: function () {
+                    alert("erro ao ler dados, verifique o backend");
+                }
+            });
+
+            function listar(usuarios) {
+                // percorrer a lista de pessoas retornadas;
+                for (var i in usuarios) { //i vale a posição no vetor
+                    lin = '<tr>' + // elabora a linha de dados do usuarios
+                        '<td>' + usuarios[i].nome + '</td>' +
+                        '<td>' + usuarios[i].senha + '</td>' +
+                        '<td>' + usuarios[i].email + '</td>' +
+                        '</td>';
+                    //adiciona a linha no corpo da tabela
+                    $('#corpoTabelaUsuarios').append(lin);
+                }
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <table>
+        <thead>oi</thead>
+        <tbody id="corpoTabelaUsuarios">
+
+        </tbody>
+    </table>
+
+    <script src="https://code.jQuery.com-3.5.1.min.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
