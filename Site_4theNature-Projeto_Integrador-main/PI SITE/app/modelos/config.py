@@ -7,6 +7,7 @@ import os
 
 #1 - Vincular com flask:
 app = Flask(__name__)
+CORS(app) #aplicar o cross domain
 #2 - Caminho do arquivo do banco de dados 
 path = os.path.dirname(os.path.abspath(__file__))
 arquivobd = os.path.join(path, '4thenature.db')

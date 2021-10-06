@@ -36,5 +36,4 @@ def incluir_usuario():
    return resposta #responder!
 
 
-
 app.run(debug=True) 
