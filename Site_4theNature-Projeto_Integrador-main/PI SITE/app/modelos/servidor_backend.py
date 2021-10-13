@@ -35,5 +35,21 @@ def incluir_usuario():
    resposta.headers.add("Access-Control-Allow-Origin", "*")
    return resposta #responder!
 
+# teste: curl -X DELETE http://localhost:5000/excluir_usuario/1 
+@app.route("/excluir_usuario/<int:usuario_id>", methods=['DELETE']) 
+def excluir_usuario(usuario_id): 
+   # preparar uma resposta otimista 
+   resposta = jsonify({"resultado": "ok", "detalhes": "ok"}) 
+   try: 
+      # excluir o usuario do ID informado 
+      Perfil.query.filter(Perfil.id == usuario_id).delete() 
+      # confirmar a exclusão 
+      db.session.commit() 
+   except Exception as e: 
+      # informar mensagem de erro 
+      resposta = jsonify({"resultado":"erro", "detalhes":str(e)}) 
+   # adicionar cabeçalho de liberação de origem 
+   resposta.headers.add("Access-Control-Allow-Origin", "*") 
+   return resposta # responder!
 
 app.run(debug=True) 

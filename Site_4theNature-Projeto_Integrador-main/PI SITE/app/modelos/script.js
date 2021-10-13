@@ -196,7 +196,7 @@ $(document).on("click", "#btIncluirUsuario", function () {
         url: 'http://localhost:5000/incluir_usuario',
         type: 'POST',
         dataType: 'json', // os dados são recebidos no formato json 
-        contentType: 'application/ json', // tipo dos dados enviados 
+        contentType: 'application/json', // tipo dos dados enviados 
         data: dados, // estes são os dados enviados 
         success: usuarioIncluido, // chama a função listar para processar o resultado 
         error: erroAoIncluir
@@ -218,5 +218,39 @@ $(document).on("click", "#btIncluirUsuario", function () {
     function erroAoIncluir(retorno) {
         // informar mensagem de erro 
         alert("ERRO: " + retorno.resultado + ":" + retorno.detalhes);
+    }
+});
+
+// código para os ícones de excluir usuario (classe css) 
+$(document).on("click", ".excluir_usuario", function () {
+    // obter o ID do ícone que foi clicado 
+    var componente_clicado = $(this).attr('id');
+    // no id do ícone, obter o ID da usuario 
+    var nome_icone = "excluir_";
+    var id_usuario = componente_clicado.substring(nome_icone.length);
+    // solicitar a exclusão da usuario 
+    $.ajax({
+        url: 'http://localhost:5000/excluir_usuario/' + id_usuario,
+        type: 'DELETE', // método da requisição 
+        dataType: 'json', // os dados são recebidos no formato json 
+        success: usuarioExcluido, // chama a função listar para processar o resultado 
+        error: erroAoExcluir
+    });
+
+    function usuarioExcluido(retorno) {
+        if (retorno.resultado == "ok") { // a operação deu certo? 
+            // remover da tela a linha cujo usuario foi excluído
+            $("#linha_" + id_usuario).fadeOut(1000, function () {
+                // informar resultado de sucesso 
+                alert("Usuário removido com sucesso!");
+            });
+        } else {
+            // informar mensagem de erro 
+            alert(retorno.resultado + ":" + retorno.detalhes);
+        }
+    }
+    function erroAoExcluir(retorno) {
+        // informar mensagem de erro 
+        alert("erro ao excluir dados, verifique o backend: ");
     }
 });
