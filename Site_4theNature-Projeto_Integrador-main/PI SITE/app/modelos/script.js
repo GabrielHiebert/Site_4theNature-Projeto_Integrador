@@ -22,22 +22,22 @@ function activeClass(active, unactive) {
 }
 
 // código para mapear click do link Inicio
-$(document).on("click", "#link-register", function () {
+$(document).on("click", "#link-register", function() {
     showContent("register");
     activeClass("#link-register", "#link-login")
 
 });
 
 // código para mapear click do link Inicio
-$(document).on("click", "#link-login", function () {
+$(document).on("click", "#link-login", function() {
     showContent("login");
     activeClass("#link-login", "#link-register")
 
 });
 
-/*
+
 //Script do gráfico da terceira dica -> Materiais Biodegradáveis:
-window.onload = function () {
+window.onload = function() {
 
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
@@ -56,23 +56,23 @@ window.onload = function () {
             type: "bar",
             toolTipContent: "<img src=\"../imagens/\"{url}\"\" style=\"width:40px; height:20px;\"> <b>{label}</b><br>Tempo: {y} anos<br>",
             dataPoints: [{
-                label: "Biodegradáveis",
-                y: 20,
-                url: "sacola-biodegradavel-grafico.jpg",
-                color: "rgb(81, 189, 72)"
-            }, {
-                label: "Convencionais",
-                y: 100,
-                url: "Sacolinha-plástica-grafico.jpg",
-                color: "rgb(209, 107, 40)"
-            },
+                    label: "Biodegradáveis",
+                    y: 20,
+                    url: "sacola-biodegradavel-grafico.jpg",
+                    color: "rgb(81, 189, 72)"
+                }, {
+                    label: "Convencionais",
+                    y: 100,
+                    url: "Sacolinha-plástica-grafico.jpg",
+                    color: "rgb(209, 107, 40)"
+                },
 
             ]
         }]
     });
     chart.render();
 }
-*/
+
 //querySelector vai ser ligado ao contexto e ao escopo do document
 /*const $ = document.querySelector.bind(document)
 
@@ -136,50 +136,6 @@ window.addEventListener('load', () => {
     TabNavigation.init()
 })
 
-
-*/
-
-
-/* acho que é inutil, serve pra listar e sair do pop up (a gente nem tem pop up)
-
-$(function () { // quando o documento estiver pronto/carregado 
-
-    // função para exibir pessoas na tabela 
-    function exibir_usuarios() {
-        $.ajax({
-            url: 'http://localhost:5000/listar_usuarios',
-            method: 'GET',
-            dataType: 'json', // os dados são recebidos no formato json 
-            success: listar, // chama a função listar para processar o resultado 
-            error: function () {
-                alert("erro ao ler dados, verifique o backend");
-            }
-        });
-
-        function listar(usuarios) {
-            // esvaziar o corpo da tabela 
-            $('#corpoTabelaUsuarios').empty();
-            // tornar a tabela visível 
-            mostrar_conteudo("tabelaUsuarios");
-            // percorrer a lista de pessoas retornadas; 
-            for (var i in usuarios) { //i vale a posição no vetor 
-                lin = '<tr>' + // elabora linha com os dados da pessoa
-                    '<td>' + usuarios[i].nome + '</td>' +
-                    '<td>' + usuarios[i].email + '</td>' +
-                    '<td>' + usuarios[i].senha + '</td>' +
-                    '</tr>';
-                // adiciona a linha no corpo da tabela 
-                $('#corpoTabelaPessoas').append(lin);
-            }
-        }
-
-        function mostrar_conteudo(identificador) {
-            // esconde todos os conteúdos 
-            $("#tabelaUsuarios").addClass('invisible');
-            $("#conteudoInicial").addClass('invisible');
-            // torna o conteúdo escolhido visível 
-            $("#" + identificador).removeClass('invisible');
-        }
 
 */
 
