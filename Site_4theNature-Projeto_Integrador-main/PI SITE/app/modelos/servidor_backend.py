@@ -6,6 +6,7 @@ def inicio():
    return 'Sistema de cadastro de usuarios. '+\
          '<a href="/listar_usuarios">Operação listar</a>'
 
+#inicio do cadastro de usuario
 @app.route("/listar_usuarios") 
 def listar_usuarios(): 
    # obter os ususários do cadastro 
@@ -51,5 +52,16 @@ def excluir_usuario(usuario_id):
    # adicionar cabeçalho de liberação de origem 
    resposta.headers.add("Access-Control-Allow-Origin", "*") 
    return resposta # responder!
+#fim do cadastro de usuario
+
+#inicio do login
+@app.route("/login")
+def pegar_id_pelo_email():
+   dados = request.get_json() #(force=True) dipensa Content-Tpe na requisição
+   usuario = Perfil.query.filter(Perfil.email == dados['email']).first()
+   return jsonify(usuario.id) if hasattr(usuario, 'id') else "Não encontrado"
+   print(usuario.id)
+   
+#Fim do login
 
 app.run(debug=True) 
