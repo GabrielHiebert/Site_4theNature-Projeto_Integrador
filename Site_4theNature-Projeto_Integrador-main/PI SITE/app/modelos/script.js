@@ -22,14 +22,14 @@ function activeClass(active, unactive) {
 }
 
 // código para mapear click do link Inicio
-$(document).on("click", "#link-register", function() {
+$(document).on("click", "#link-register", function () {
     showContent("register");
     activeClass("#link-register", "#link-login")
 
 });
 
 // código para mapear click do link Inicio
-$(document).on("click", "#link-login", function() {
+$(document).on("click", "#link-login", function () {
     showContent("login");
     activeClass("#link-login", "#link-register")
 
@@ -37,7 +37,7 @@ $(document).on("click", "#link-login", function() {
 
 
 //Script do gráfico da terceira dica -> Materiais Biodegradáveis:
-window.onload = function() {
+window.onload = function () {
 
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
@@ -56,16 +56,16 @@ window.onload = function() {
             type: "bar",
             toolTipContent: "<img src=\"../imagens/\"{url}\"\" style=\"width:40px; height:20px;\"> <b>{label}</b><br>Tempo: {y} anos<br>",
             dataPoints: [{
-                    label: "Biodegradáveis",
-                    y: 20,
-                    url: "sacola-biodegradavel-grafico.jpg",
-                    color: "rgb(81, 189, 72)"
-                }, {
-                    label: "Convencionais",
-                    y: 100,
-                    url: "Sacolinha-plástica-grafico.jpg",
-                    color: "rgb(209, 107, 40)"
-                },
+                label: "Biodegradáveis",
+                y: 20,
+                url: "sacola-biodegradavel-grafico.jpg",
+                color: "rgb(81, 189, 72)"
+            }, {
+                label: "Convencionais",
+                y: 100,
+                url: "Sacolinha-plástica-grafico.jpg",
+                color: "rgb(209, 107, 40)"
+            },
 
             ]
         }]
@@ -209,4 +209,24 @@ $(document).on("click", ".excluir_usuario", function () {
         // informar mensagem de erro 
         alert("erro ao excluir dados, verifique o backend: ");
     }
+});
+
+// código para mapear click do botão Login 
+$(document).on("click", "#btLogin", function () {
+    //pegar dados da tela 
+    email = $("#campoEmail").val();
+    senha = $("#campoSenha").val();
+    // preparar dados no formato json 
+    var dados = JSON.stringify({ email: email, senha: senha });
+    // fazer requisição para o back-end 
+    $.ajax({
+        url: 'http://localhost:5000/pegar_id_pelo_email',
+        type: 'GET',
+        dataType: 'json', // os dados são recebidos no formato json 
+        contentType: 'application/json', // tipo dos dados enviados 
+        data: dados, // estes são os dados enviados 
+        success: usuarioIncluido, // chama a função listar para processar o resultado 
+        error: erroAoIncluir
+    });
+    alert("belezinha!!!")
 });

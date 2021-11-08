@@ -58,8 +58,8 @@ def excluir_usuario(usuario_id):
 @app.route("/login")
 def pegar_id_pelo_email():
    dados = request.get_json() #(force=True) dipensa Content-Tpe na requisição
-   usuario = Perfil.query.filter(Perfil.email == dados['email']).first()
-   return jsonify(usuario.id) if hasattr(usuario, 'id') else "Não encontrado"
+   usuario = Perfil.query.filter(Perfil.email == dados['email'], Perfil.senha == dados['senha']).first()
+   return jsonify({"resultado": "ok", "detalhes": usuario.id}) if hasattr(usuario, 'id') else jsonify({"resultado": "Erro", "detalhes": "Usuario ou senha invalidos!"})
    print(usuario.id)
    
 #Fim do login
